@@ -3,49 +3,9 @@ title: JavaScript Array API全解析
 date: 2017-11-07 15:42:22
 tags: JavaScript
 description: JavaScript 数组API操作全解析~
+toc: true
 ---
 
-- [Array构造器](#array构造器)
-- [Array.isArray](#arrayisarray)
-- [ES6新增的构造函数方法](#es6新增的构造函数方法)
-    - [Array.of](#arrayof)
-    - [Array.from](#arrayfrom)
-- [方法](#方法)
-    - [改变自身值](#改变自身值)
-        - [push](#push)
-        - [pop](#pop)
-        - [shift](#shift)
-        - [unshift](#unshift)
-        - [reverse](#reverse)
-        - [splice](#splice)
-        - [sort](#sort)
-        - [copyWithin](#copywithin)
-        - [fill](#fill)
-    - [不改变自身值](#不改变自身值)
-        - [concat](#concat)
-        - [indexOf](#indexof)
-        - [lastIndexOf](#lastindexof)
-        - [join](#join)
-        - [slice](#slice)
-        - [toString](#tostring)
-        - [toLocaleString](#tolocalestring)
-        - [includes](#includes)
-    - [遍历方法](#遍历方法)
-        - [forEach](#foreach)
-        - [map](#map)
-        - [filter](#filter)
-        - [every](#every)
-        - [some](#some)
-        - [find](#find)
-        - [findIndex](#findindex)
-        - [reduce](#reduce)
-        - [reduceRight](#reduceright)
-        - [keys](#keys)
-        - [entries](#entries)
-        - [values](#values)
-        - [Symbol.iterator(ES6)](#symboliteratores6)
-
-<!-- /TOC -->
 
 # 数组API
 
