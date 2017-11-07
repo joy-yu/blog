@@ -25,10 +25,10 @@ block content
         span= ' ' + __('Comment')
       script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
     if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content, {list_number: theme.toc_number})
+      div(id='toc' class='toc-article')
+        div(class='toc-title')= __('contents')
+        != toc(page.content, {list_number: theme.toc_number})
+      div(class='toc-icon')
     .post-content
       != page.content
     if theme.donate.enable == true
@@ -39,6 +39,7 @@ block content
 
     include _partial/tag
     include _partial/post_nav
+    include _partial/toc
 
     if page.comments
       include _partial/comments

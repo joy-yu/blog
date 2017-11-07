@@ -27,6 +27,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-size: 14px;
 }
+ul,ol,li {
+  list-style-type: none;
+}
+
 .body_container {
     padding: 0 60px;
     max-width: 1150px;
@@ -498,11 +502,11 @@ pre {
 }
 
 /* back-to-top rocket*/
-@media print, screen and (min-width: 48em) {
+
 #rocket {
     position: fixed;
-    right: 50px;
-    bottom: 50px;
+    right: 15px;
+    bottom: 15px;
     display: block;
     visibility: hidden;
     width: 26px;
@@ -554,7 +558,7 @@ pre {
       transform: scale(1.4, 3.2);
     }
 }
-}
+
 
 /* *******************************************************
 * Process timelime, (homepage)
@@ -1502,31 +1506,54 @@ figure.highlight,
 }
 
 /* toc*/
-.toc-article {
-  border: 1px solid #bbb;
-  border-radius: 7px;
-  margin: 1.1em 0 0 2em;
-  padding: 0.7em 0.7em 0 0.7em;
-  max-width: 40%;
-}
-.toc-title {
-  font-size: 120%;
-}
+
 #toc {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #222;
+  z-index: 1;
   line-height: 1em;
-  float: right;
+  border: 1px solid #bbb;
+  padding: 0.7em;
+  overflow: auto;
+  height: 100%;
+  display: none;
+
+  .toc-title {
+    font-size: 1rem;
+    color: #87daff;
+  }
+
   .toc {
     padding: 0;
     margin: 0.5em;
     line-height: 1.8em;
-    li {
-      list-style-type: none;
-    }
   }
   .toc-child {
     margin-left: 1em;
     padding-left: 0;
   }
+  .toc-link {
+    color: #999;
+  }
+  .toc-link:hover {
+    color: #ccc;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+.toc-icon{
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZpbGw9IiNhMmEyYTIiIGlkPSJzdmdfMSIgZD0ibTQsMTBsMjQsMGMxLjEwNCwwIDIsLTAuODk2IDIsLTJzLTAuODk2LC0yIC0yLC0ybC0yNCwwYy0xLjEwNCwwIC0yLDAuODk2IC0yLDJzMC44OTYsMiAyLDJ6bTI0LDRsLTI0LDBjLTEuMTA0LDAgLTIsMC44OTYgLTIsMnMwLjg5NiwyIDIsMmwyNCwwYzEuMTA0LDAgMiwtMC44OTYgMiwtMnMtMC44OTYsLTIgLTIsLTJ6bTAsOGwtMjQsMGMtMS4xMDQsMCAtMiwwLjg5NiAtMiwyczAuODk2LDIgMiwybDI0LDBjMS4xMDQsMCAyLC0wLjg5NiAyLC0ycy0wLjg5NiwtMiAtMiwtMnoiLz4KIDwvZz4KPC9zdmc+);
+  background-size: 100% 100%;
+  width: 21px;
+  height: 21px;
+  z-index: 2;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
 /* table*/

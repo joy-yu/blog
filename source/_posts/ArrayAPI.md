@@ -780,4 +780,3 @@ var arr2 = [...iterator]    // arr2: ["a","b",undefined,"c"]
 - 无。
 
 **返回：** **Array Iterator**
-
