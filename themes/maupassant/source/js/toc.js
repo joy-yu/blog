@@ -1,7 +1,9 @@
 $(".toc-icon").click(function() {
   $("#toc").toggle("fast")
+  $(".toc-icon").toggleClass("highlight")
 });
 
 $("#toc").click(function() {
-  $(this).hide("fast")
+  $("#toc").hide("fast")
+  $(".toc-icon").toggleClass("highlight")
 });

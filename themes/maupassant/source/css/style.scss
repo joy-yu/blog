@@ -867,7 +867,7 @@ figure.highlight,
     line-height:    1.1em;
     color:          #333;
     padding-top:    15px;
-    overflow:       hidden;
+    overflow:       auto;
 
     table {
         display:    block;
@@ -1545,15 +1545,14 @@ figure.highlight,
 }
 
 .toc-icon{
-  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZpbGw9IiNhMmEyYTIiIGlkPSJzdmdfMSIgZD0ibTQsMTBsMjQsMGMxLjEwNCwwIDIsLTAuODk2IDIsLTJzLTAuODk2LC0yIC0yLC0ybC0yNCwwYy0xLjEwNCwwIC0yLDAuODk2IC0yLDJzMC44OTYsMiAyLDJ6bTI0LDRsLTI0LDBjLTEuMTA0LDAgLTIsMC44OTYgLTIsMnMwLjg5NiwyIDIsMmwyNCwwYzEuMTA0LDAgMiwtMC44OTYgMiwtMnMtMC44OTYsLTIgLTIsLTJ6bTAsOGwtMjQsMGMtMS4xMDQsMCAtMiwwLjg5NiAtMiwyczAuODk2LDIgMiwybDI0LDBjMS4xMDQsMCAyLC0wLjg5NiAyLC0ycy0wLjg5NiwtMiAtMiwtMnoiLz4KIDwvZz4KPC9zdmc+);
-  background-size: 100% 100%;
-  width: 21px;
-  height: 21px;
   z-index: 2;
   position: fixed;
   top: 15px;
   right: 15px;
   cursor: pointer;
+}
+.highlight{
+  color: #87daff;
 }
 
 /* table*/

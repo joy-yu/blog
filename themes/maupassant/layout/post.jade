@@ -28,7 +28,7 @@ block content
       div(id='toc' class='toc-article')
         div(class='toc-title')= __('contents')
         != toc(page.content, {list_number: theme.toc_number})
-      div(class='toc-icon')
+      i(class='fa fa-lg fa-bars toc-icon')
     .post-content
       != page.content
     if theme.donate.enable == true
