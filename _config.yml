@@ -1,18 +1,16 @@
-# Hexo Configuration
-## Docs: https://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
-
 # Site
 title: microheart
 subtitle: 微心
-description: joy-yu的博客小站
+keywords: microheart,微心,前端,博客,joy-yu,javascript,html,css,react,vue,html5,css3
+description: microheart微心的博客小站
 author: joy-yu
 language: zh-CN
 timezone: Asia/Shanghai
+rss:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://microheart.com
+url: http://microheart.me
 root: /
 permalink: :year/:month/:day/:title.html
 permalink_defaults:
