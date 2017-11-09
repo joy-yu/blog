@@ -25,3 +25,10 @@ head
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
         ga('create','#{theme.google_analytics}','auto');ga('send','pageview');
+
+    script.
+      (function(){
+      var bp = document.createElement('script');bp.src = '//push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+      })();

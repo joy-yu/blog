@@ -1982,6 +1982,13 @@ hexo-generator-index@^0.2.0:
     hexo-pagination "0.0.2"
     object-assign "^4.0.1"
 
+hexo-generator-search@^2.1.1:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/hexo-generator-search/download/hexo-generator-search-2.1.1.tgz#bce5651b9c0dc1d3b0dd6d40e025fba412e788d9"
+  dependencies:
+    ejs "^1.0.0"
+    utils-merge "^1.0.0"
+
 hexo-generator-sitemap@^1.1.2:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/hexo-generator-sitemap/download/hexo-generator-sitemap-1.2.0.tgz#3018f8d7d1e2e42b3f71a65a7316ffcf583bc3f3"
