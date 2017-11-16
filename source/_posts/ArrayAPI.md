@@ -375,7 +375,7 @@ arr.lastIndexOf(3,-4)    // 2
 **示例：**
 ```javascript
 var arr = [1,2,3,'',undefined,{},[4,5,6]]
-arr.join('-')    // "1-2-3---[object Object]-4,5,6"
+arr.join('-')    // '1-2-3---[object Object]-4,5,6'
 ```
 
 **描述：**
@@ -415,7 +415,7 @@ arr.slice(0,2)    // [1,2]
 **示例：**
 ```javascript
 var arr = [1111,2222,3333]
-arr.toString()    // "1111,2222,3333"
+arr.toString()    // '1111,2222,3333'
 ```
 
 **描述：**
@@ -432,7 +432,7 @@ arr.toString()    // "1111,2222,3333"
 **示例：**
 ```javascript
 var arr = [1111,2222,3333]
-arr.toLocaleString()    // "1,111,2,222,3,333"
+arr.toLocaleString()    // '1,111,2,222,3,333'
 ```
 
 **描述：**
@@ -504,7 +504,7 @@ arr.forEach(function(v, i, a) {console.log(v+1,i)}, this)
 **示例：**
 ```javascript
 var arr = [1,2,3,{b:2},undefined,,23]
-arr.map(function(v, i, a) {return v+1}, this)    // [2, 3, 4, "[object Object]1", NaN, empty × 1, 24]
+arr.map(function(v, i, a) {return v+1}, this)    // [2, 3, 4, '[object Object]1', NaN, empty × 1, 24]
 ```
 
 **描述：**
@@ -704,7 +704,7 @@ var flattened = [[0, 1], [2, 3], [4, 5]].reduceRight(function(iter, v, i) {
 
 **示例：**
 ```javascript
-var arr = ["a", "b", , "c"];
+var arr = ['a', 'b', , 'c'];
 var iterator = arr.keys();
 var arr2 = [...iterator]    // arr2: [0,1,2,3]
 
@@ -725,9 +725,9 @@ var arr2 = [...iterator]    // arr2: [0,1,2,3]
 
 **示例：**
 ```javascript
-var arr = ["a", "b", , "c"];
+var arr = ['a', 'b', , 'c'];
 var iterator = arr.entries();
-var arr2 = [...iterator]    // arr2: [[0,"a"], [1"b"], [2,undefined], [3,"c"]]
+var arr2 = [...iterator]    // arr2: [[0,'a'], [1'b'], [2,undefined], [3,'c']]
 
 ```
 
@@ -746,9 +746,9 @@ var arr2 = [...iterator]    // arr2: [[0,"a"], [1"b"], [2,undefined], [3,"c"]]
 
 **示例：**
 ```javascript
-var arr = ["a", "b", , "c"];
+var arr = ['a', 'b', , 'c'];
 var iterator = arr.values();
-var arr2 = [...iterator]    // arr2: ["a","b",undefined,"c"]
+var arr2 = [...iterator]    // arr2: ['a','b',undefined,'c']
 
 ```
 
@@ -767,9 +767,9 @@ var arr2 = [...iterator]    // arr2: ["a","b",undefined,"c"]
 
 **示例：**
 ```javascript
-var arr = ["a", "b", , "c"];
+var arr = ['a', 'b', , 'c'];
 var iterator = arr[Symbol.iterator]();
-var arr2 = [...iterator]    // arr2: ["a","b",undefined,"c"]
+var arr2 = [...iterator]    // arr2: ['a','b',undefined,'c']
 
 ```
 
