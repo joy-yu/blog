@@ -10,6 +10,16 @@ uyan: ## Your uyan_id. e.g. 1234567
 livere: ## Your livere data-uid, e.g. MTAyMC8zMDAxOC78NTgz
 changyan: ## Your changyan appid, e.g. cyrALsXc8
 changyan_conf: ## You changyan conf, e.g. prod_d8a508c2825ab57eeb43e7c69bba0e8b
+valine:
+  enable: true ## if you want to use Valine comment system, please set the value to true
+  appid: EPlKnUBMwIjknunKevua36KI-gzGzoHsz ## your leancloud application appid
+  appkey: oBTqz2VXOCiNroLTENKSTR7y ## your leancloud application appkey
+  notify:  ## mail notifier , https://github.com/xCss/Valine/wiki
+  verify:  ## Verification code
+  placeholder: 说点什么咩? ## comment input placeholder text 
+  avatar: 'mm'
+  pageSize: 50
+  guest_info: nick,link
 google_search: ## Use Google search, true/false.
 baidu_search: ## Use Baidu search, true/false.
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
@@ -80,4 +90,4 @@ js: js
 css: css
 
 # Theme version
-version: 0.0.0
+version: 0.0.1
