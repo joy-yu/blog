@@ -10,18 +10,256 @@ toc: true
 
 # 对象API
 
+这里我们探讨的 `对象` 主要指 Object 构造出来的对象。
+
 # Object构造器
 
 Object.prototype 本身是一个object。
 
-
-先把印象笔记里的扔上来。。。
+创建对象的两种方法：
 ```javascript
-Object.getOwnPropertyNames(Object)
-["length", "name", "arguments", "caller", "prototype", "assign", "create", "freeze", "isExtensible", "isFrozen", "isSealed", "keys", "preventExtensions", "seal", "defineProperty", "defineProperties", "getPrototypeOf", "setPrototypeOf", "getOwnPropertyDescriptor", "getOwnPropertyNames", "is", "getOwnPropertySymbols", "getOwnPropertyDescriptors", "entries”, “values”, "observe", "unobserve"]
+// Object构造函数
+var arr1 = Object()
+// 相当于new Object()
+
+// 对象字面量，推荐
+var arr2 = {}
+```
+
+当直接调用Object构造函数，内部会判断调用[[Call]]方法还是[[Construct]]方法，统一进行[[Construct]]方法调用。大致实现如下：
+```javascript
+function Object (...args) {
+  // 不是new调用，返回数组实例
+  if(new.target !== Object) return new Object(...args)
+}
+```
+
+Object构造器根据参数类型不同会调用不同的构造器进行处理：
+```javascript
+
+var obj = new Object(123)  // 等价于 new Number(123)
+console.log(obj)  // Number {[[PrimitiveValue]]: 123}
+
+var obj = new Object('I am string')  // 等价于 new String('I am string')
+console.log(obj)  // String {[[PrimitiveValue]]: "I am string"}
+```
+
+# Object.prototype 上的方法
+
+
+## hasOwnProperty
+
+**示例：**
+```javascript
+var obj = { value: 233 }
+obj.hasOwnProperty('value')  // true
+
+obj.hasOwnProperty(props)
+```
+
+**描述：**
+- 检测对象自身是否含有指定的属性键。
+- 只检查自身的属性键，不含原型链的属性键。
+
+**参数：**
+- props：需要检查的属性键。
+
+**返回：** **Boolean**
+
+
+--------------------------------------------------------------------------------
+## propertyIsEnumerable
+
+**示例：**
+```javascript
+var obj = { value: 233 }
+obj.propertyIsEnumerable('value')  // true
+
+obj.propertyIsEnumerable(props)
+```
+
+**描述：**
+- 判断对象自身的指定属性键是否可枚举。
+- 只检查自身的属性键，不含原型链的属性键。
+
+**参数：**
+- props：需要检查的属性键。
+
+**返回：** **Boolean**
+
+
+--------------------------------------------------------------------------------
+## isPrototypeOf
+
+**示例：**
+```javascript
+var obj = {}
+Object.prototype.isPrototypeOf(obj)  // true
+obj instanceof Object  // true
+
+obj instance of constructorFn
+prototypeObj.isPrototypeOf(obj)
+```
+
+**描述：**
+- 判断 obj 对象的原型链 [[prototype]] 上是否有 prototypeObj。
+- 区别于 obj instanceof constructorFn：判断 obj 对象的原型链 [[prototype]] 上是否有 constructorFn.prototype。
+
+
+**参数：**
+- obj：要测试的对象。
+
+**返回：** **Boolean**
+
+
+--------------------------------------------------------------------------------
+## toString
+
+**示例：**
+```javascript
+var obj = {}
+obj.toString()  // "[object Object]"
+
+var arr = []
+Object.prototype.toString.call(arr)  // "[object Array]"
+
+obj.toString()
+```
+
+**描述：**
+- 返回 "[object type]" 字符串，其中 type 表示对象的类型。
+
+
+**参数：**
+- 无。
+
+**返回：** **String**
+
+
+--------------------------------------------------------------------------------
+## valueOf
+
+**示例：**
+```javascript
+var obj = {}
+obj.valueOf() === obj  // true
+
+var num = 123
+Object.prototype.valueOf.call(num) // Number {[[PrimitiveValue]]: 123}
+
+obj.valueOf()
+```
+
+**描述：**
+- 返回对象的原始值。默认情况下，对象的 valueOf 方法返回对象本身。
+
+
+**参数：**
+- 无。
+
+**返回：** **String**
+
+
+# Object 构造函数内的方法
+
+
+## create
+
+**示例：**
+```javascript
+var proto = { b: 233 }
+var newObj = Object.create(proto, {
+  c: {
+    value: 666
+  }
+})
+console.log(newObj)  // {c: 666}
+console.log(newObj.b)  // 233
+
+Object.create(proto, obj)
+```
+
+**描述：**
+- 以 proto 对象作为原型对象来创建一个新对象，obj 参数内含一组 属性 与 属性描述符 作为新创建对象的属性。返回该新创建的对象。
+
+
+**参数：**
+- proto：新创建对象的原型对象。
+- obj：(可选)。是一个对象，由 `属性名:属性描述符对象` 为键值对组成。
+
+**返回：** **Object**
+
+
+--------------------------------------------------------------------------------
+## keys
+
+**示例：**
+```javascript
+var proto = { b: 233 }
+var keys = Object.keys(obj)
+console.log(keys)  // {c: 666}
+
+Object.keys(obj)
+```
+
+**描述：**
+- 返回对象`可枚举`的`自身属性`的**属性键组成的数组**。
+- for-in 不仅会查找`可枚举`的`自身属性`还会查找该对象所有`原型链上的可枚举属性`。
+
+
+**参数：**
+- obj：执行的目标对象。
+
+**返回：** **Array**
+
+
+
+--------------------------------------------------------------------------------
+## isExtensible
+--------------------------------------------------------------------------------
+## isFrozen
+--------------------------------------------------------------------------------
+## isSealed
+--------------------------------------------------------------------------------
+## preventExtensions
+--------------------------------------------------------------------------------
+## seal
+--------------------------------------------------------------------------------
+## freeze
+
+--------------------------------------------------------------------------------
+## defineProperty
+--------------------------------------------------------------------------------
+## defineProperties
+
+--------------------------------------------------------------------------------
+## getPrototypeOf
+--------------------------------------------------------------------------------
+## setPrototypeOf(ES6)
+--------------------------------------------------------------------------------
+## assign(ES6)
+--------------------------------------------------------------------------------
+## is(ES6)
+
+--------------------------------------------------------------------------------
+## getOwnPropertyDescriptor
+--------------------------------------------------------------------------------
+## getOwnPropertyNames
+--------------------------------------------------------------------------------
+## getOwnPropertySymbols(ES6)
+--------------------------------------------------------------------------------
+## getOwnPropertyDescriptors(ES8)
+
+--------------------------------------------------------------------------------
+## entries(ES8)
+--------------------------------------------------------------------------------
+## values(ES8)
+
+
+```javascript
 
 var obj = {a:1,b:2,get c(){return 6;}};
-Object.create(obj,{});               // 返回 以obj对象作为原型的新对象，{}内含一组属性与值作为新创建对象的属性，如{foo:{writable:true,configurable:true:value:"hello"}}
+
 Object.preventExtensions(obj);    //对象变得不可扩展，不能添加新的属性。反过来不能再变得可扩展。
 Object.seal(obj);                           //被密封的对象只能修改已有属性的值。禁止扩展，并且configurable属性改为false。
 Object.freeze(obj);                  //被冻结的对象永远不可变。密封，并且writable改为false。但是！冻结对象中的非冻结对象可以被修改。
@@ -35,26 +273,9 @@ Object.getOwnPropertyDescriptors(obj)          //返回obj对象所有属性的�
 Object.getPrototypeOf(obj);                            //返回对象的[[prototype]]值。（相当于obj.__proto__）
 Object.setPrototypeOf(obj,prototype);              //IE11+；设置对象的[[Prototype]]值。
 Object.getOwnPropertyNames(obj);                 //返回obj对象自身属性的属性键组成的数组 。（含不可枚举）
-Object.keys(obj);                                             //返回对象可枚举的自身属性的属性键组成的数组。（for-in多了继承属性）
+
 //以上默认IE9+
 Object.getOwnPropertySymbols(obj)               //获取对象自身的所有symbol属性键，返回属性键组成的数组。
-Object.observe(obj,function(changes){});         //chrome&opera可用。异步监视一个对象的修改，对象属性被修改时，运行回调函数。changes是数组，属性name是被修改的属性名，object是修改后的对象，type是对象做了何种修改，oldValue是对象修改前的值。
-Object.unobserve();                                             //解除observe监听。不能是匿名函数。
+
 Object.assign(target, obj1,obj2...)     //浅拷贝，将所有可枚举属性值从一个/多个源对象复制到目标对象。无法复制访问器属性（get/set），访问器属性最终会变为数据属性。
 Object.is(value1, value2);          //返回一个布尔值，表明传入的两个值是否是同一个值。值都是 undefined/null/true/false/相同字符串/相同数字含NaN和±0/指向同一对象。
-
-
-
-Object.getOwnPropertyNames(Object.prototype)
-["constructor", "toString", "toLocaleString", "valueOf", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "__defineGetter__", "__lookupGetter__", "__defineSetter__", "__lookupSetter__", "__proto__"]
-
-obj.hasOwnProperty("b");          //判断obj对象的某个自身属性键是否存在。（忽略原型链）
-obj.isPrototypeOf(o);                //判断obj对象是否在o的原型链（[[prototype]]）上！！区别于o instanceof obj;判断obj.prototype是否在o的原型链[[prototype]]上。
-obj.propertyIsEnumerable("b");   //判断obj对象的自身属性键b是否可枚举。  for...in遍历对象及原型链的可枚举属性
-obj.__proto__;                         //指向构造函数的prototype属性，也可以是null。相当于Object.getPrototypeOf(obj);
-obj.__defineGetter__(prop,func);              //IE11+，非标准。将一个函数绑定在obj对象指定属性上，当属性被读取时调用函数。还是用get吧~
-obj.__lookupGetter__(prop);               //非标准，访问obj对象上指定属性的get属性。还是用Object.getOwnPropertyDescriptor(obj,prop).get吧~;
-obj.__defineSetter__(prop,func);obj.__lookupSetter__(prop);     //同上理。
-obj.toString();               //返回"[object type]"，type表示对象类型。
-obj.valueOf();               //方法返回指定对象的原始值。当遇到一种需要转换成一个原始值情况时候， JavaScript 会自动调用此函数。
-```
