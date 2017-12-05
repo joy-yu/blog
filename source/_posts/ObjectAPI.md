@@ -462,8 +462,6 @@ Object.isFrozen(obj)
 
 ## getPrototypeOf
 
-Object.setPrototypeOf(obj,prototype);              //IE11+；设置对象的[[Prototype]]值。
-
 **示例：**
 ```javascript
 var obj = { a: 1 }
