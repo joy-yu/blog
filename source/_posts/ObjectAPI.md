@@ -60,11 +60,11 @@ obj.hasOwnProperty(props)
 ```
 
 **描述：**
-- 检测对象自身是否含有指定的属性键。
-- 只检查自身的属性键，不含原型链的属性键。
+- 检测对象自身是否含有指定的属性名。
+- 只检查自身的属性名，不含原型链的属性名。
 
 **参数：**
-- props：需要检查的属性键。
+- props：需要检查的属性名。
 
 **返回：** **Boolean**
 
@@ -81,11 +81,11 @@ obj.propertyIsEnumerable(props)
 ```
 
 **描述：**
-- 判断对象自身的指定属性键是否可枚举。
-- 只检查自身的属性键，不含原型链的属性键。
+- 判断对象自身的指定属性名是否可枚举。
+- 只检查自身的属性名，不含原型链的属性名。
 
 **参数：**
-- props：需要检查的属性键。
+- props：需要检查的属性名。
 
 **返回：** **Boolean**
 
@@ -205,9 +205,9 @@ Object.keys(obj)
 ```
 
 **描述：**
-- 返回对象`可枚举`的`自身属性`的**属性键组成的数组**。
+- 返回对象`可枚举`的`自身属性`的**属性名组成的数组**。
 - for-in 不仅会查找`可枚举`的`自身属性`还会查找该对象所有`原型链上的可枚举属性`。
-
+- 以上只支持`字符串属性名`，皆不含`Symbol属性名`。
 
 **参数：**
 - obj：执行的目标对象。
@@ -344,7 +344,7 @@ Object.isExtensible(obj)
 
 
 **参数：**
-- obj：被检测的对象。
+- obj：目标对象。
 
 **返回：** **Boolean**
 
@@ -399,7 +399,7 @@ Object.isSealed(obj)
 
 
 **参数：**
-- obj：被检测的对象。
+- obj：目标对象。
 
 **返回：** **Boolean**
 
@@ -455,16 +455,81 @@ Object.isFrozen(obj)
 - 冻结：不可添加、不可删除、不可修改。
 
 **参数：**
-- obj：被检测的对象。
+- obj：目标对象。
 
 **返回：** **Boolean**
 
 
 ## getPrototypeOf
 
+Object.setPrototypeOf(obj,prototype);              //IE11+；设置对象的[[Prototype]]值。
+
+**示例：**
+```javascript
+var obj = { a: 1 }
+var o = Object.create(obj)
+o.__proto__  //  { a: 1 }
+Object.getPrototypeOf(o)  // { a: 1 }
+
+
+Object.getPrototypeOf(obj)
+```
+
+**描述：**
+- 返回目标对象的原型（ [[Prototype]]属性 ）。
+
+
+**参数：**
+- obj：目标对象。
+
+**返回：** **Object**
+
+
 ## setPrototypeOf(ES6)
 
+```javascript
+var obj = { a: 1 }
+var o = {}
+Object.setPrototypeOf(o, obj)
+Object.getPrototypeOf(o)  // { a: 1 }
+
+Object.setPrototypeOf(obj, prototypeObj)
+```
+
+**描述：**
+- 设置指定的对象的原型（ [[Prototype]]属性 ），并返回该目标对象。
+- 更改对象的 [[Prototype]] 在各个浏览器和 JavaScript 引擎上都是一个很慢的操作，尽量使用 create 方法替代。
+
+
+**参数：**
+- obj：目标对象。
+- prototypeObj：目标对象的原型。
+
+**返回：** **Object**
+
+
 ## assign(ES6)
+
+**示例：**
+```javascript
+var obj = { a: 1 }
+Object.assign(obj, { a:2, b:3, [Symbol('a')]:233 }, {b:4})
+console.log(obj) // { a:2, b:4, Symbol(a): 233 }
+
+Object.assign(target, s1,s2,s3...)
+```
+
+**描述：**
+- 将所有`可枚举`的`自身属性`从一个或多个源对象浅复制到目标对象，并返回目标对象。
+- 源对象中和目标对象中有相同属性名，则源对象属性覆盖目标对象属性。参数后部的源对象属性类似地覆盖参数前部或目标对象的相同属性。
+- 无法复制访问器属性（get/set），源对象访问器属性get 最终会以数据属性复制到目标对象中。
+
+**参数：**
+- target：目标对象。
+- s(n)：源对象。
+
+**返回：** **Object**
+
 
 ## is(ES6)
 
@@ -484,10 +549,11 @@ Object.is(value1, value2)
 **描述：**
 - 判断两个值是否是相同的值。
 - === 严格相等的判断：±0所有情况视为相等，两个 NaN 视为不等。
-- 符合相同的情况：
+- is方法符合相同的情况：
   - 两个值都是 +0，-0，NaN。
   - 两个值都是 undefined，null，true/false，除开 0 和 NaN 的其它相同数字，相同字符串。
   - 两个值指向同一对象（内存地址相同）。
+- 比较算法为 [SameValue](http://www.ecma-international.org/ecma-262/#sec-samevalue)。
 
 
 **参数：**
@@ -500,11 +566,128 @@ Object.is(value1, value2)
 
 ## getOwnPropertyDescriptor
 
+**示例：**
+```javascript
+var obj = {a: 2}
+
+Object.getOwnPropertyDescriptor(obj, 'a')
+// {value : 2, writable : true, configurable : true, enumerable : true}
+
+Object.defineProperty(obj, 'b', { value : 1 })
+Object.getOwnPropertyDescriptor(obj, 'b')
+// {value : 1, writable : false, configurable : false, enumerable : false}
+
+Object.defineProperty(obj, 'c', {
+  get: function(){return 233},
+  set: function(newValue){this.a = newValue + 1}
+})
+Object.getOwnPropertyDescriptor(obj, 'c')
+/*
+{
+  configurable : false,
+  enumerable : false,
+  get: function(){return 233},
+  set: function(newValue){this.a = newValue + 1}
+}
+*/
+
+Object.getOwnPropertyDescriptor(obj, prop)
+```
+
+**描述：**
+- 返回指定对象上自有属性对应的属性描述符对象，没有则返回 undefined 。
+
+
+**参数：**
+- obj：目标对象。
+- prop：目标对象的属性名。
+
+**返回：** **Object/undefined**
+
+
 ## getOwnPropertyNames
+
+**示例：**
+```javascript
+var obj = {a: 1}
+var o = Object.create(obj, {b:{value:2, enumerable:false}})
+Object.keys(o)  // []
+Object.getOwnPropertyNames(o)  // ['b']
+
+Object.getOwnPropertyNames(obj)
+```
+
+**描述：**
+- 返回对象`包含可枚举和不可枚举`的`自身属性`的**属性名组成的数组**。
+- Object.keys 方法返回对象`可枚举`的`自身属性`的**属性名组成的数组**。
+- for-in 不仅会查找`可枚举`的`自身属性`还会查找该对象所有`原型链上的可枚举属性`。
+- 以上只支持`字符串属性名`，皆不含`Symbol属性名`。
+
+
+**参数：**
+- obj：目标对象。
+
+**返回：** **Array**
+
 
 ## getOwnPropertySymbols(ES6)
 
+**示例：**
+```javascript
+var obj = { [Symbol('ha')]: 233 }
+var a = Symbol('omg')
+obj[a] = 'symbolValue'
+Object.keys(obj)  // []
+Object.getOwnPropertyNames(obj)  // []
+Object.getOwnPropertySymbols(obj)  // [ Symbol(ha), Symbol(omg) ]
+
+Object.getOwnPropertySymbols(obj)
+```
+
+**描述：**
+- 返回对象`自身属性`的**Symbol属性名组成的数组**。
+
+
+**参数：**
+- obj：目标对象。
+
+**返回：** **Array**
+
+
 ## getOwnPropertyDescriptors(ES8)
+
+**示例：**
+```javascript
+var obj = {a: 2}
+Object.defineProperty(obj, 'b', { value : 1 })
+Object.defineProperty(obj, 'c', {
+  get: function(){return 233},
+  set: function(newValue){this.a = newValue + 1}
+})
+
+Object.getOwnPropertyDescriptors(obj)
+/*
+{
+  a: {value : 2, writable : true, configurable : true, enumerable : true},
+  b: {value : 1, writable : false, configurable : false, enumerable : false},
+  c: {
+    configurable : false,
+    enumerable : false,
+    get: function(){return 233},
+    set: function(newValue){this.a = newValue + 1}
+  }
+*/
+
+Object.getOwnPropertyDescriptors(obj)
+```
+
+**描述：**
+- 返回指定对象上所有 自身属性及其属性描述符 组成的对象。
+
+**参数：**
+- obj：目标对象。
+
+**返回：** **Object**
 
 
 ## entries(ES8)
@@ -539,20 +722,3 @@ Object.values(obj)  // ['1', 2, 1]
 - obj：目标对象。
 
 **返回：** **Array**
-
-
-```javascript
-
-
-Object.getOwnPropertyDescriptor(obj,key);     //IE8+；返回obj对象中key属性的属性描述符。{enumerable:true,configurable:true,writable:true,value:”static”/get(set):..}
-Object.getOwnPropertyDescriptors(obj)          //返回obj对象所有属性的属性描述符。
-Object.getPrototypeOf(obj);                            //返回对象的[[prototype]]值。（相当于obj.__proto__）
-Object.setPrototypeOf(obj,prototype);              //IE11+；设置对象的[[Prototype]]值。
-Object.getOwnPropertyNames(obj);                 //返回obj对象自身属性的属性键组成的数组 。（含不可枚举）
-
-//以上默认IE9+
-Object.getOwnPropertySymbols(obj)               //获取对象自身的所有symbol属性键，返回属性键组成的数组。
-
-Object.assign(target, obj1,obj2...)     //浅拷贝，将所有可枚举属性值从一个/多个源对象复制到目标对象。无法复制访问器属性（get/set），访问器属性最终会变为数据属性。
-
-```

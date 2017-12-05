@@ -1,5 +1,8 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+tags: JavaScript
+categories: JavaScript
+description:
+toc: true
 ---

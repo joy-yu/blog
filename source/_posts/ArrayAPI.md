@@ -521,7 +521,7 @@ arr.includes(value, startIndex)
 
 **描述：**
 - 从数组的起始位置（含） startIndex 开始查找 value ，返回布尔值。
-- 比较算法为[SameValueZero](#http://www.ecma-international.org/ecma-262/7.0/#sec-samevaluezero)。
+- 比较算法为 [SameValueZero](http://www.ecma-international.org/ecma-262/7.0/#sec-samevaluezero)。
 
 **参数：**
 - value：需要查找的元素。
