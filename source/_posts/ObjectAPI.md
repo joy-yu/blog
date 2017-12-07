@@ -46,7 +46,7 @@ console.log(obj)  // String {[[PrimitiveValue]]: "I am string"}
 ```
 
 --------------------------------------------------------------------------------
-# Object.prototype 的方法
+# Object.prototype 方法
 
 
 ## hasOwnProperty

@@ -375,47 +375,29 @@ arr.concat(a,b,c,d,e)
 
 
 --------------------------------------------------------------------------------
-<a name="indexof"></a>
-### indexOf
+### indexOf / lastIndexOf
 
 **示例：**
 ```javascript
 var arr = [1,2,3,3,2,1]
 arr.indexOf(1, 2)  // 5
 arr.indexOf(3, -3)  // 3
+arr.lastIndexOf(1)  // 5
+arr.lastIndexOf(3, 2)  // 2
 
 arr.indexOf(value, index)
-```
-
-**描述：**
-- 顺序查找参数 value 在数组中的位置，index 为查找的起始位置（含）。返回**参数在数组中的下标位置**，若数组中找不到该参数则返回-1。
-- [=== 严格相等匹配](#http://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)。
-
-**参数：**
-- value：需要查找的元素。
-- index：(可选)。查找的起始位置。
-
-**返回：** **Number**
-
-
---------------------------------------------------------------------------------
-### lastIndexOf
-
-**示例：**
-```javascript
-var arr = [1,2,3,3,2,1]
-arr.lastIndexOf(1)  // 5
-arr.lastIndexOf(3, -4)  // 2
-
 arr.lastIndexOf(value, index)
 ```
 
 **描述：**
-- 倒序查找，其它同[indexOf](#indexof)。
+- 查找参数 value 在数组中首次出现的位置，index 为查找的起始位置（含）。返回**参数在数组中首次出现的下标位置**。
+- 数组中找不到该参数则返回 -1。
+- [=== 严格相等匹配](#http://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)。
+- indexOf 顺序查找，lastIndexOf 倒序查找。
 
 **参数：**
 - value：需要查找的元素。
-- index：(可选)。查找的起始位置。
+- index：(可选)。查找的起始位置（含）。
 
 **返回：** **Number**
 
@@ -663,55 +645,6 @@ arr.some(fn(v, i, a){}, this)
 
 **返回：** **Boolean**
 
---------------------------------------------------------------------------------
-### find
-
-**示例：**
-```javascript
-function isBigEnough(v) {
-  return v >= 15
-}
-[12, 5, 8, 130, 44].find(isBigEnough)  // 130
-
-arr.find(fn(v, i, a){}, this)
-```
-
-**描述：**
-- find 方法依次为数组中的每一个元素调用一次 fn 函数，若 fn 函数返回值等价于 true，则该方法立即返回该元素；若所有数组元素调用 fn 函数返回结果都等价于 false，则返回 undefined。
-- 包含无效元素。
-
-**参数：**
-- fn：数组元素执行的函数。
-  - fn 的参数：v 为当前处理的数组元素值，i 为当前处理的数组元素索引，a 为当前处理的数组。
-- this：(可选)。执行 fn 时指定的 this 值。
-
-**返回：** **任意**
-
-
---------------------------------------------------------------------------------
-### findIndex
-
-**示例：**
-```javascript
-function isBigEnough(v) {
-  return v >= 15
-}
-[12, 5, 8, 130, 44].findIndex(isBigEnough)    // 3
-
-arr.findIndex(fn(v, i, a){}, this)
-```
-
-**描述：**
-- findIndex 方法依次为数组中的每一个元素调用一次 fn 函数，若fn 函数返回值等价于 true，则该方法立即返回该元素的索引；若所有数组元素调用 fn 函数返回结果都等价于 false，则返回 -1。
-- 包含无效元素。
-
-**参数：**
-- fn：数组元素执行的函数。
-  - fn 的参数：v 为当前处理的数组元素值，i 为当前处理的数组元素索引，a 为当前处理的数组。
-- this：(可选)。执行 fn 时指定的 this 值。
-
-**返回：** **Number**
-
 
 --------------------------------------------------------------------------------
 ### reduce
@@ -787,6 +720,56 @@ arr.reduceRight(fn(iter, i, a){}, initValue)
 - initValue：(可选)。用作第一次调用 fn 的参数 iter 的值。
 
 **返回：** **任意**
+
+
+--------------------------------------------------------------------------------
+### find(ES6)
+
+**示例：**
+```javascript
+function isBigEnough(v) {
+  return v >= 15
+}
+[12, 5, 8, 130, 44].find(isBigEnough)  // 130
+
+arr.find(fn(v, i, a){}, this)
+```
+
+**描述：**
+- find 方法依次为数组中的每一个元素调用一次 fn 函数，若 fn 函数返回值等价于 true，则该方法立即返回该元素；若所有数组元素调用 fn 函数返回结果都等价于 false，则返回 undefined。
+- 包含无效元素。
+
+**参数：**
+- fn：数组元素执行的函数。
+  - fn 的参数：v 为当前处理的数组元素值，i 为当前处理的数组元素索引，a 为当前处理的数组。
+- this：(可选)。执行 fn 时指定的 this 值。
+
+**返回：** **任意**
+
+
+--------------------------------------------------------------------------------
+### findIndex(ES6)
+
+**示例：**
+```javascript
+function isBigEnough(v) {
+  return v >= 15
+}
+[12, 5, 8, 130, 44].findIndex(isBigEnough)    // 3
+
+arr.findIndex(fn(v, i, a){}, this)
+```
+
+**描述：**
+- findIndex 方法依次为数组中的每一个元素调用一次 fn 函数，若fn 函数返回值等价于 true，则该方法立即返回该元素的索引；若所有数组元素调用 fn 函数返回结果都等价于 false，则返回 -1。
+- 包含无效元素。
+
+**参数：**
+- fn：数组元素执行的函数。
+  - fn 的参数：v 为当前处理的数组元素值，i 为当前处理的数组元素索引，a 为当前处理的数组。
+- this：(可选)。执行 fn 时指定的 this 值。
+
+**返回：** **Number**
 
 
 --------------------------------------------------------------------------------
