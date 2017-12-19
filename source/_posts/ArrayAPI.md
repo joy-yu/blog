@@ -8,7 +8,7 @@ toc: true
 ---
 
 
-# 数组API
+# Array API
 
 # Array构造器
 

@@ -8,7 +8,7 @@ toc: true
 ---
 
 
-# 对象API
+# Object API
 
 这里我们探讨的 `对象` 主要指 Object 构造出来的对象。
 

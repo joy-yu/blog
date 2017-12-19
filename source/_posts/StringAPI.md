@@ -7,7 +7,7 @@ date: 2017-12-05 23:08:08
 description:  JavaScript 字符串API操作全解析~
 ---
 
-# 字符串API
+# String API
 
 # String 构造函数方法
 
