@@ -291,8 +291,9 @@ div {
                 color: #01579f;
                 padding-bottom: 2px;
                 word-break: break-all;
+                text-decoration: underline;
                 &:hover {
-                    text-decoration: underline;
+                  color: #009dfc;
                 }
             }
         }
@@ -326,14 +327,17 @@ div {
                 display: inline-block;
                 margin: 0 5px;
                 padding: 0px 5px;
-                background: #f7f8f8;
+                color: #c7254e;
+                border-radius: 4px;
+                background: #f9f2f4;
             }
             a {
                 color: #01579f;
                 padding-bottom: 2px;
                 word-break: break-all;
+                text-decoration: underline;
                 &:hover {
-                    text-decoration: underline;
+                  color: #009dfc;
                 }
             }
         }
@@ -1524,6 +1528,7 @@ figure.highlight,
   .toc-title {
     font-size: 1rem;
     color: #87daff;
+    margin: 0 0.45em;
   }
 
   .toc {
