@@ -6,8 +6,8 @@ var htmlclean = require('gulp-htmlclean');
 var gzip = require('gulp-gzip');
 
 var gzip_config = {
-  threshold: '1kb',
-  gzipOptions: { level: 9 },
+  threshold: '5kb',
+  gzipOptions: { level: 8 },
   skipGrowingFiles : true
 }
 
