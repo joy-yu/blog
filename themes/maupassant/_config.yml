@@ -20,6 +20,7 @@ valine:
   avatar: 'mm'
   pageSize: 50
   guest_info: nick,link
+  visitor: true
 google_search: ## Use Google search, true/false.
 baidu_search: ## Use Baidu search, true/false.
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
