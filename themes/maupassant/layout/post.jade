@@ -32,8 +32,7 @@ block content
       div(id='toc' class='toc-article')
         div(class='toc-title')= __('contents')
         != toc(page.content, {list_number: theme.toc_number})
-      i(class='toc-icon')
-        目录点我
+      i(class='toc-icon') 目录点我
     .post-content
       != page.content
     if theme.donate.enable == true
