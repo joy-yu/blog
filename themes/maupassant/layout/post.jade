@@ -13,7 +13,7 @@ block content
           for category in page.categories.toArray()
             a(href=url_for(category.path))= category.name
       if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        script(src='https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', async)
         span#busuanzi_container_page_pv= ' | '
           span#busuanzi_value_page_pv
           span= ' ' + __('Hits')
@@ -41,10 +41,6 @@ block content
       script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
       a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}', data-qrcode=qrcode(page.permalink))= __('shareto')
 
-    p.leancloud-visitors(id=page.path, data-flag-title=page.title)
-      em.post-meta-item-text 文章访问人数 
-      i.leancloud-visitors-count 139
-    </span>
     include _partial/tag
     include _partial/post_nav
     include _partial/toc

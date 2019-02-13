@@ -10,7 +10,6 @@
 	}
 })(jQuery);
 jQuery(document).ready(function() {
-	$("#github").attr('href', $.getUrlParam('GitHub') || "https://github.com/" + window.location.href.split(".github.io")[0].split("/").pop())
 	var QRBox = $('#QRBox');
 	var MainBox = $('#MainBox');
 	var count = 0;
@@ -45,7 +44,7 @@ jQuery(document).ready(function() {
 	$("#donateBox li,#donateBox li a").css("width", Math.ceil(74+(74*(4-count)/count))+"px");
 	function showQR(QR) {
 		if(QR) {
-			MainBox.css('background-image', 'url(' + QR + ')');
+			MainBox.attr('src', QR);
 		}
 		$('#DonateText,#donateBox,#github').addClass('blur');
 		QRBox.fadeIn(300, function(argument) {

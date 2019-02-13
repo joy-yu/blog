@@ -1,10 +1,10 @@
 ---
-title: JavaScript "相等" 的二三事
+title: JavaScript “相等” 的二三事
 tags: JavaScript
 categories: JavaScript
 toc: true
 date: 2017-12-19 16:16:44
-description: JavaScript "相等" 的二三事。除了众所周知的 "==" 和 "==="，你知道 [].indexOf、[].includes、Object.is 的匹配规则是什么样的呢？这里我带大家结合官方规范进行相关整理讲解。
+description: JavaScript “相等” 的二三事。除了众所周知的 "==" 和 "==="，你知道 [].indexOf、[].includes、Object.is 的匹配规则是什么样的呢？这里我带大家结合官方规范进行相关整理讲解。
 ---
 
 # 相等不相等？
